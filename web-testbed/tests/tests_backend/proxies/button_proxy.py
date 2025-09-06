@@ -14,3 +14,15 @@ class ButtonProxy(ProxyBase):
 
         object.__setattr__(self, "id", widget_id)
         object.__setattr__(self, "_inited", True)
+        object.__setattr__(self, "_icon", None)
+
+    @property
+    def icon(self):
+        code = f"result = {str(self)}.icon"
+        return self._page().eval_js("(code) => window.test_cmd(code)", code)
+
+    @icon.setter
+    def icon(self, name, value):
+        code = f"{str(self)}.icon = 'resources/icons/red'"
+        self._page().eval_js("(code) => window.test_cmd(code)", code)
+        object.__setattr__(self, "_icon", value)
