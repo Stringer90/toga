@@ -1,4 +1,8 @@
 class BoxProxy:
+    # Minimal toga.Box proxy, currently only for use in the 'probe' pytest fixture.
+    # Need to make structure more similar to 'ButtonProxy'.
+    # Need to generalise in the future with 'ProxyBase', like 'ButtonProxy'.
+
     """Proxy for toga.Box(children=[...])."""
 
     page_provider = staticmethod(lambda: None)
