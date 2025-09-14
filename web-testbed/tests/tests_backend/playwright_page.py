@@ -37,7 +37,7 @@ class BackgroundPage:
             self._context = await self._browser.new_context()
             self._page = await self._context.new_page()
 
-            await self._page.goto("http://localhost:8080/")
+            await self._page.goto("http://127.0.0.1:8080/")
             # await self._page.goto(
             #     "http://localhost:8080", wait_until="load", timeout=30_000
             # )
@@ -45,6 +45,10 @@ class BackgroundPage:
 
             await self._page.evaluate(
                 "(code) => window.test_cmd(code)", "self.my_widgets = {}"
+            )
+
+            await self._page.evaluate(
+                "(code) => window.test_cmd(code)", "self.my_obj = {}"
             )
 
             self._alock = asyncio.Lock()
